@@ -151,8 +151,8 @@ export class ReadableEthersLiquity implements ReadableLiquity {
     const { troveManager } = _getContracts(this.connection);
 
     const [collateral, debt] = await Promise.all([
-      troveManager.L_ETH({ ...overrides }).then(decimalify),
-      troveManager.L_LUSDDebt({ ...overrides }).then(decimalify)
+      troveManager.L_Coll({ ...overrides }).then(decimalify),
+      troveManager.L_Debt({ ...overrides }).then(decimalify)
     ]);
 
     return new Trove(collateral, debt);
@@ -215,8 +215,8 @@ export class ReadableEthersLiquity implements ReadableLiquity {
 
     const [activeCollateral, activeDebt] = await Promise.all(
       [
-        activePool.getETH({ ...overrides }),
-        activePool.getLUSDDebt({ ...overrides })
+        activePool.getColl({ ...overrides }),
+        activePool.getDebt({ ...overrides })
       ].map(getBigNumber => getBigNumber.then(decimalify))
     );
 
@@ -229,8 +229,8 @@ export class ReadableEthersLiquity implements ReadableLiquity {
 
     const [liquidatedCollateral, closedDebt] = await Promise.all(
       [
-        defaultPool.getETH({ ...overrides }),
-        defaultPool.getLUSDDebt({ ...overrides })
+        defaultPool.getColl({ ...overrides }),
+        defaultPool.getDebt({ ...overrides })
       ].map(getBigNumber => getBigNumber.then(decimalify))
     );
 
@@ -243,6 +243,8 @@ export class ReadableEthersLiquity implements ReadableLiquity {
       this._getActivePool(overrides),
       this._getDefaultPool(overrides)
     ]);
+
+    console.log('Total:',activePool.add(defaultPool))
 
     return activePool.add(defaultPool);
   }
@@ -281,7 +283,7 @@ export class ReadableEthersLiquity implements ReadableLiquity {
     const { communityIssuance } = _getContracts(this.connection);
 
     const issuanceCap = this.connection.totalStabilityPoolLQTYReward;
-    const totalLQTYIssued = decimalify(await communityIssuance.totalLQTYIssued({ ...overrides }));
+    const totalLQTYIssued = decimalify(await communityIssuance.totalMYOIssued({ ...overrides }));
 
     // totalLQTYIssued approaches but never reaches issuanceCap
     return issuanceCap.sub(totalLQTYIssued);
@@ -477,8 +479,8 @@ export class ReadableEthersLiquity implements ReadableLiquity {
     const [stakedLQTY, collateralGain, lusdGain] = await Promise.all(
       [
         lqtyStaking.stakes(address, { ...overrides }),
-        lqtyStaking.getPendingETHGain(address, { ...overrides }),
-        lqtyStaking.getPendingLUSDGain(address, { ...overrides })
+        lqtyStaking.getPendingGEMGain(address, { ...overrides }),
+        lqtyStaking.getPendingPAIGain(address, { ...overrides })
       ].map(getBigNumber => getBigNumber.then(decimalify))
     );
 
@@ -489,7 +491,7 @@ export class ReadableEthersLiquity implements ReadableLiquity {
   async getTotalStakedLQTY(overrides?: EthersCallOverrides): Promise<Decimal> {
     const { lqtyStaking } = _getContracts(this.connection);
 
-    return lqtyStaking.totalLQTYStaked({ ...overrides }).then(decimalify);
+    return lqtyStaking.totalMYOStaked({ ...overrides }).then(decimalify);
   }
 
   /** {@inheritDoc @liquity/lib-base#ReadableLiquity.getFrontendStatus} */
