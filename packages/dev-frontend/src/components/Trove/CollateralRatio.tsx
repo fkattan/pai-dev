@@ -25,7 +25,7 @@ export const CollateralRatio: React.FC<CollateralRatioProps> = ({ value, change 
         </Box>
 
         <StaticRow
-          label="Collateral ratio"
+          label="Ratio sobre colateral"
           inputId="trove-collateral-ratio"
           amount={collateralRatioPct.prettify()}
           color={
@@ -62,7 +62,8 @@ export const CollateralRatio: React.FC<CollateralRatioProps> = ({ value, change 
       </Flex>
       {value?.lt(1.5) && (
         <ActionDescription>
-          Keeping your CR above 150% can help avoid liquidation under Recovery Mode.
+          Mantener tu RC sobre 150% puede ayudar a evitar la liquidación bajo el Modo de
+          Recuperación.
         </ActionDescription>
       )}
     </>
