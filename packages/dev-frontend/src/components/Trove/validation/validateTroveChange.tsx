@@ -214,8 +214,8 @@ const validateTroveCreation = (
   if (depositCollateral.gt(accountBalance)) {
     return (
       <ErrorDescription>
-        The amount you're trying to deposit exceeds your balance by{" "}
-        <Amount>{depositCollateral.sub(accountBalance).prettify()} ETH</Amount>.
+        El monto que intentas depositar excede tu tenencia por{" "}
+        <Amount>{depositCollateral.sub(accountBalance).prettify()} DAI</Amount>.
       </ErrorDescription>
     );
   }
