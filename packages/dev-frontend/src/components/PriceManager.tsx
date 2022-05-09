@@ -28,7 +28,7 @@ export const PriceManager: React.FC = () => {
 
   return (
     <Card>
-      <Heading>Price feed</Heading>
+      <Heading>Precio</Heading>
 
       <Box sx={{ p: [2, 3] }}>
         <Flex sx={{ alignItems: "stretch" }}>

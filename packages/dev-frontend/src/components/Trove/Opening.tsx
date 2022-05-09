@@ -97,7 +97,7 @@ export const Opening: React.FC = () => {
   return (
     <Card>
       <Heading>
-        Trove
+        Tesoro
         {isDirty && !isTransactionPending && (
           <Button variant="titleIcon" sx={{ ":enabled:hover": { color: "danger" } }} onClick={reset}>
             <Icon name="history" size="lg" />
@@ -107,19 +107,19 @@ export const Opening: React.FC = () => {
 
       <Box sx={{ p: [2, 3] }}>
         <EditableRow
-          label="Collateral"
+          label="Colateral"
           inputId="trove-collateral"
           amount={collateral.prettify(4)}
           maxAmount={maxCollateral.toString()}
           maxedOut={collateralMaxedOut}
           editingState={editingState}
-          unit="ETH"
+          unit="DAI"
           editedAmount={collateral.toString(4)}
           setEditedAmount={(amount: string) => setCollateral(Decimal.from(amount))}
         />
 
         <EditableRow
-          label="Borrow"
+          label="Préstamo"
           inputId="trove-borrow-amount"
           amount={borrowAmount.prettify()}
           unit={COIN}
@@ -129,7 +129,7 @@ export const Opening: React.FC = () => {
         />
 
         <StaticRow
-          label="Liquidation Reserve"
+          label="Reserva de Liquidación"
           inputId="trove-liquidation-reserve"
           amount={`${LUSD_LIQUIDATION_RESERVE}`}
           unit={COIN}
@@ -147,7 +147,7 @@ export const Opening: React.FC = () => {
         />
 
         <StaticRow
-          label="Borrowing Fee"
+          label="Tasa de Préstamo"
           inputId="trove-borrowing-fee"
           amount={fee.prettify(2)}
           pendingAmount={feePct.toString(2)}
@@ -165,7 +165,7 @@ export const Opening: React.FC = () => {
         />
 
         <StaticRow
-          label="Total debt"
+          label="Deuda Total"
           inputId="trove-total-debt"
           amount={totalDebt.prettify(2)}
           unit={COIN}
@@ -191,7 +191,7 @@ export const Opening: React.FC = () => {
 
         {description ?? (
           <ActionDescription>
-            Start by entering the amount of ETH you'd like to deposit as collateral.
+            Comienza por ingresar la cantidad de DAI que quisieras depositar como colateral.
           </ActionDescription>
         )}
 
@@ -205,7 +205,7 @@ export const Opening: React.FC = () => {
 
         <Flex variant="layout.actions">
           <Button variant="cancel" onClick={handleCancelPressed}>
-            Cancel
+            Cancelar
           </Button>
 
           {gasEstimationState.type === "inProgress" ? (
@@ -219,10 +219,10 @@ export const Opening: React.FC = () => {
               maxBorrowingRate={maxBorrowingRate}
               borrowingFeeDecayToleranceMinutes={60}
             >
-              Confirm
+              Confirmar
             </TroveAction>
           ) : (
-            <Button disabled>Confirm</Button>
+            <Button disabled>Confirmar</Button>
           )}
         </Flex>
       </Box>
