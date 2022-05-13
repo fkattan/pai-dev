@@ -844,7 +844,7 @@ export class PopulatableEthersLiquity
       currentBorrowingRate
     );
 
-    const txParams = [
+    const txParams = borrowLUSD => [
       maxBorrowingRate.hex,
       borrowLUSD.hex,
       depositCollateral.hex,
