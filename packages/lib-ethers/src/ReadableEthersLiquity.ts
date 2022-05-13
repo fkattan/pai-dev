@@ -206,7 +206,7 @@ export class ReadableEthersLiquity implements ReadableLiquity {
   getPrice(overrides?: EthersCallOverrides): Promise<Decimal> {
     const { priceFeed } = _getContracts(this.connection);
 
-    return priceFeed.callStatic.fetchPrice({ ...overrides }).then(decimalify);
+    return priceFeed.callStatic.fetchPrice({ ...overrides, gasLimit: 500000 }).then(decimalify);
   }
 
   /** @internal */

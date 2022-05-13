@@ -844,11 +844,11 @@ export class PopulatableEthersLiquity
       currentBorrowingRate
     );
 
-    const txParams = (borrowLUSD: Decimal): Parameters<typeof borrowerOperations.openTrove> => [
+    const txParams = [
       maxBorrowingRate.hex,
       borrowLUSD.hex,
+      depositCollateral.hex,
       ...hints,
-      { value: depositCollateral.hex, ...overrides }
     ];
 
     let gasHeadroom: number | undefined;
