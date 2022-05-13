@@ -25,7 +25,7 @@ export const UserAccount: React.FC = () => {
       <Flex sx={{ alignItems: "center" }}>
         <Icon name="user-circle" size="lg" />
         <Flex sx={{ ml: 3, mr: 4, flexDirection: "column" }}>
-          <Heading sx={{ fontSize: 1 }}>Connectado con:</Heading>
+          <Heading sx={{ fontSize: 1 }}>Conectado con:</Heading>
           <Text as="span" sx={{ fontSize: 1 }}>
             {shortenAddress(account)}
           </Text>
@@ -36,7 +36,7 @@ export const UserAccount: React.FC = () => {
         <Icon name="wallet" size="lg" />
 
         {([
-          ["ETH", accountBalance],
+          ["DAI", accountBalance],
           [COIN, lusdBalance],
           [GT, lqtyBalance]
         ] as const).map(([currency, balance], i) => (
