@@ -36,10 +36,10 @@ export const TroveAction: React.FC<TroveActionProps> = ({
         })
   );
 
-  // const approveTransaction = liquity.send.approveTroveTransaction.bind(
-  //   liquity.send,
-  //   change.params.borrowLUSD
-  // );
+  const approveTransaction = liquity.send.approveTroveTransaction.bind(
+    liquity.send,
+    change.params.borrowLUSD
+  );
 
-  return <Button onClick={sendTransaction}>{children}</Button>;
+  return <Button onClick={approveTransaction}>{children}</Button>;
 };

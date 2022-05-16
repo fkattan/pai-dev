@@ -868,10 +868,12 @@ export class PopulatableEthersLiquity
         );
       }
 
-      const [gasNow, gasLater] = await Promise.all([
-        borrowerOperations.estimateGas.openTrove(...txParams(borrowLUSD)),
-        borrowerOperations.estimateGas.openTrove(...txParams(borrowLUSDSimulatingDecay))
-      ]);
+      // const [gasNow, gasLater] = await Promise.all([
+      //   borrowerOperations.estimateGas.openTrove(...txParams(borrowLUSD)),
+      //   borrowerOperations.estimateGas.openTrove(...txParams(borrowLUSDSimulatingDecay))
+      // ]);
+
+      const [gasNow, gasLater] = [BigNumber.from(500000), BigNumber.from(500000)];
 
       const gasLimit = addGasForBaseRateUpdate(borrowingFeeDecayToleranceMinutes)(
         bigNumberMax(addGasForPotentialListTraversal(gasNow), gasLater)
