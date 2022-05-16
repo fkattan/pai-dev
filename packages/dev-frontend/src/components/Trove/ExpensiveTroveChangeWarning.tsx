@@ -46,10 +46,10 @@ export const ExpensiveTroveChangeWarning: React.FC<ExpensiveTroveChangeWarningPa
 
         if (!cancelled) {
           setGasEstimationState({ type: "complete", populatedTx });
-          console.log(
-            "Estimated TX cost: " +
-              Decimal.from(`${populatedTx.rawPopulatedTransaction.gasLimit}`).prettify(0)
-          );
+          // console.log(
+          //   "Estimated TX cost: " +
+          //     Decimal.from(`${populatedTx.rawPopulatedTransaction.gasLimit}`).prettify(0)
+          // );
         }
       }, 333);
 

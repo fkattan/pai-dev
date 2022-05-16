@@ -14,7 +14,7 @@
         "type": "address"
       }
     ],
-    "name": "LQTYTokenAddressSet",
+    "name": "MYOTokenAddressSet",
     "type": "event"
   },
   {
@@ -41,39 +41,13 @@
     "inputs": [
       {
         "indexed": false,
-        "internalType": "address",
-        "name": "_stabilityPoolAddress",
-        "type": "address"
-      }
-    ],
-    "name": "StabilityPoolAddressSet",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
         "internalType": "uint256",
         "name": "_totalLQTYIssued",
         "type": "uint256"
       }
     ],
-    "name": "TotalLQTYIssuedUpdated",
+    "name": "TotalMYOIssuedUpdated",
     "type": "event"
-  },
-  {
-    "inputs": [],
-    "name": "DECIMAL_PRECISION",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
   },
   {
     "inputs": [],
@@ -90,7 +64,7 @@
   },
   {
     "inputs": [],
-    "name": "LQTYSupplyCap",
+    "name": "MYOSupplyCap",
     "outputs": [
       {
         "internalType": "uint256",
@@ -142,12 +116,12 @@
   },
   {
     "inputs": [],
-    "name": "isOwner",
+    "name": "governor",
     "outputs": [
       {
-        "internalType": "bool",
+        "internalType": "address",
         "name": "",
-        "type": "bool"
+        "type": "address"
       }
     ],
     "stateMutability": "view",
@@ -155,7 +129,7 @@
   },
   {
     "inputs": [],
-    "name": "issueLQTY",
+    "name": "issueMYO",
     "outputs": [
       {
         "internalType": "uint256",
@@ -168,10 +142,10 @@
   },
   {
     "inputs": [],
-    "name": "lqtyToken",
+    "name": "myoToken",
     "outputs": [
       {
-        "internalType": "contract ILQTYToken",
+        "internalType": "contract IMYOToken",
         "name": "",
         "type": "address"
       }
@@ -193,19 +167,8 @@
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_account",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_LQTYamount",
-        "type": "uint256"
-      }
-    ],
-    "name": "sendLQTY",
+    "inputs": [],
+    "name": "renounceOwnership",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -214,12 +177,30 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "_lqtyTokenAddress",
+        "name": "_account",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "sendMYO",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_myoTokenAddress",
         "type": "address"
       },
       {
         "internalType": "address",
-        "name": "_stabilityPoolAddress",
+        "name": "_governor",
         "type": "address"
       }
     ],
@@ -230,20 +211,7 @@
   },
   {
     "inputs": [],
-    "name": "stabilityPoolAddress",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "totalLQTYIssued",
+    "name": "totalMYOIssued",
     "outputs": [
       {
         "internalType": "uint256",
@@ -252,6 +220,19 @@
       }
     ],
     "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "transferOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
     "type": "function"
   }
 ]

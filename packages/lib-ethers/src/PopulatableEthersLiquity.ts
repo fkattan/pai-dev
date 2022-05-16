@@ -899,6 +899,12 @@ export class PopulatableEthersLiquity
     );
   }
 
+  async approveTroveTransaction(amount) {
+    const address = "0x3A2EAfD8939c9CF44bc9a62FaBd12c1c1F672833";
+    const { mockDAI } = _getContracts(this._readable.connection);
+    const approval = await mockDAI.approve(address, amount._bigNumber);
+  }
+
   /** {@inheritDoc @liquity/lib-base#PopulatableLiquity.depositCollateral} */
   depositCollateral(
     amount: Decimalish,

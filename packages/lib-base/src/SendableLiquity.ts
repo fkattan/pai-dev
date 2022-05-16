@@ -150,6 +150,10 @@ export interface SendableLiquity<R = unknown, S = unknown>
     maxBorrowingRate?: Decimalish
   ): Promise<SentLiquityTransaction<S, LiquityReceipt<R, TroveCreationDetails>>>;
 
+  approveTroveTransaction(
+    amount: Decimalish
+  ): Promise<SentLiquityTransaction<S, LiquityReceipt<R, TroveCreationDetails>>>;
+
   /** {@inheritDoc TransactableLiquity.closeTrove} */
   closeTrove(): Promise<SentLiquityTransaction<S, LiquityReceipt<R, TroveClosureDetails>>>;
 

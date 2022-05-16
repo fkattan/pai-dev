@@ -51,7 +51,9 @@ export class SendableEthersLiquity
       .openTrove(params, maxBorrowingRateOrOptionalParams, overrides)
       .then(sendTransaction);
   }
-
+  async approveTroveTransaction(amount) {
+    return this._populate.approveTroveTransaction(amount).then(sendTransaction);
+  }
   /** {@inheritDoc @liquity/lib-base#SendableLiquity.closeTrove} */
   closeTrove(
     overrides?: EthersTransactionOverrides

@@ -3,32 +3,12 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "_communityIssuanceAddress",
+        "name": "_borrowerOperations",
         "type": "address"
       },
       {
         "internalType": "address",
-        "name": "_lqtyStakingAddress",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_lockupFactoryAddress",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_bountyAddress",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_lpRewardsAddress",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_multisigAddress",
+        "name": "_vault",
         "type": "address"
       }
     ],
@@ -66,37 +46,17 @@
       {
         "indexed": false,
         "internalType": "address",
-        "name": "_communityIssuanceAddress",
+        "name": "_user",
         "type": "address"
-      }
-    ],
-    "name": "CommunityIssuanceAddressSet",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
+      },
       {
         "indexed": false,
-        "internalType": "address",
-        "name": "_lqtyStakingAddress",
-        "type": "address"
+        "internalType": "uint256",
+        "name": "_amount",
+        "type": "uint256"
       }
     ],
-    "name": "LQTYStakingAddressSet",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "_lockupContractFactoryAddress",
-        "type": "address"
-      }
-    ],
-    "name": "LockupContractFactoryAddressSet",
+    "name": "PAITokenBalanceUpdated",
     "type": "event"
   },
   {
@@ -126,12 +86,12 @@
   },
   {
     "inputs": [],
-    "name": "ONE_YEAR_IN_SECONDS",
+    "name": "DOMAIN_SEPARATOR",
     "outputs": [
       {
-        "internalType": "uint256",
+        "internalType": "bytes32",
         "name": "",
-        "type": "uint256"
+        "type": "bytes32"
       }
     ],
     "stateMutability": "view",
@@ -205,16 +165,21 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "communityIssuanceAddress",
-    "outputs": [
+    "inputs": [
       {
         "internalType": "address",
-        "name": "",
+        "name": "_account",
         "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_amount",
+        "type": "uint256"
       }
     ],
-    "stateMutability": "view",
+    "name": "burn",
+    "outputs": [],
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -227,7 +192,7 @@
         "type": "uint8"
       }
     ],
-    "stateMutability": "view",
+    "stateMutability": "pure",
     "type": "function"
   },
   {
@@ -255,45 +220,6 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "domainSeparator",
-    "outputs": [
-      {
-        "internalType": "bytes32",
-        "name": "",
-        "type": "bytes32"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "getDeploymentStartTime",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "getLpRewardsEntitlement",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
     "inputs": [
       {
         "internalType": "address",
@@ -318,42 +244,21 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "lockupContractFactory",
-    "outputs": [
-      {
-        "internalType": "contract ILockupContractFactory",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "lqtyStakingAddress",
-    "outputs": [
+    "inputs": [
       {
         "internalType": "address",
-        "name": "",
+        "name": "_account",
         "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "multisigAddress",
-    "outputs": [
+      },
       {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
+        "internalType": "uint256",
+        "name": "_amount",
+        "type": "uint256"
       }
     ],
-    "stateMutability": "view",
+    "name": "mint",
+    "outputs": [],
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -366,7 +271,7 @@
         "type": "string"
       }
     ],
-    "stateMutability": "view",
+    "stateMutability": "pure",
     "type": "function"
   },
   {
@@ -441,25 +346,7 @@
         "type": "bytes32"
       }
     ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_sender",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_amount",
-        "type": "uint256"
-      }
-    ],
-    "name": "sendToLQTYStaking",
-    "outputs": [],
-    "stateMutability": "nonpayable",
+    "stateMutability": "pure",
     "type": "function"
   },
   {
@@ -472,7 +359,7 @@
         "type": "string"
       }
     ],
-    "stateMutability": "view",
+    "stateMutability": "pure",
     "type": "function"
   },
   {
@@ -551,7 +438,7 @@
         "type": "string"
       }
     ],
-    "stateMutability": "view",
+    "stateMutability": "pure",
     "type": "function"
   }
 ]

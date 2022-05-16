@@ -8,6 +8,8 @@ import { Deferrable, resolveProperties } from "@ethersproject/properties";
 
 import { WebSocketAugmentedWeb3Provider } from "./WebSocketAugmentedProvider";
 
+const MockDAIABI = require("../../../lib-ethers/abi/MockDAI.json");
+const MockDAIAddress = "0x9e2A51102F921CC7E344565e6432CCf55529bFdA";
 const multicallAddress = {
   1: "0xeefBa1e63905eF1D7ACbA5a8513c70307C1cE441",
   3: "0x53C43764255c17BD724F74c4eF150724AC50a3ed",
@@ -151,6 +153,7 @@ export const Batched = <T extends new (...args: any[]) => BaseProvider>(Base: T)
 
     _chainId = 0;
     _multicall?: Multicall;
+    _mockdai: any;
     _timeoutId: any;
     _batched: BatchedCalls = emptyBatch();
 
@@ -169,6 +172,7 @@ export const Batched = <T extends new (...args: any[]) => BaseProvider>(Base: T)
 
       if (hasMulticall(chainId)) {
         this._multicall = new Contract(multicallAddress[chainId], multicallAbi, this) as Multicall;
+        this._mockdai = new Contract(MockDAIAddress, MockDAIABI, this);
       }
 
       this._chainId = chainId;
@@ -268,11 +272,11 @@ export const Batched = <T extends new (...args: any[]) => BaseProvider>(Base: T)
     ): Promise<BigNumber> {
       const [resolvedAddressOrName, resolvedBlockTag] = await Promise.all([addressOrName, blockTag]);
 
-      if (!isAddress(resolvedAddressOrName) || !this._multicall) {
+      if (!isAddress(resolvedAddressOrName) || !this._mockdai) {
         return super.getBalance(resolvedAddressOrName, blockTag);
       }
 
-      const [balance] = await this._multicall.functions.getEthBalance(resolvedAddressOrName, {
+      const [balance] = await this._mockdai.functions.balanceOf(resolvedAddressOrName, {
         blockTag: resolvedBlockTag
       });
 

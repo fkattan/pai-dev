@@ -1,15 +1,26 @@
 [
   {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_core",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
     "anonymous": false,
     "inputs": [
       {
         "indexed": false,
-        "internalType": "address",
-        "name": "_activePoolAddress",
-        "type": "address"
+        "internalType": "uint256",
+        "name": "_F_GEM",
+        "type": "uint256"
       }
     ],
-    "name": "ActivePoolAddressSet",
+    "name": "F_GEMUpdated",
     "type": "event"
   },
   {
@@ -17,12 +28,12 @@
     "inputs": [
       {
         "indexed": false,
-        "internalType": "address",
-        "name": "_borrowerOperationsAddress",
-        "type": "address"
+        "internalType": "uint256",
+        "name": "_F_PAI",
+        "type": "uint256"
       }
     ],
-    "name": "BorrowerOperationsAddressSet",
+    "name": "F_PAIUpdated",
     "type": "event"
   },
   {
@@ -41,33 +52,7 @@
         "type": "uint256"
       }
     ],
-    "name": "EtherSent",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "_F_ETH",
-        "type": "uint256"
-      }
-    ],
-    "name": "F_ETHUpdated",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "_F_LUSD",
-        "type": "uint256"
-      }
-    ],
-    "name": "F_LUSDUpdated",
+    "name": "GEMSent",
     "type": "event"
   },
   {
@@ -76,43 +61,17 @@
       {
         "indexed": false,
         "internalType": "address",
-        "name": "_lqtyTokenAddress",
-        "type": "address"
-      }
-    ],
-    "name": "LQTYTokenAddressSet",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "_lusdTokenAddress",
-        "type": "address"
-      }
-    ],
-    "name": "LUSDTokenAddressSet",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "previousOwner",
+        "name": "_account",
         "type": "address"
       },
       {
-        "indexed": true,
-        "internalType": "address",
-        "name": "newOwner",
-        "type": "address"
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_amount",
+        "type": "uint256"
       }
     ],
-    "name": "OwnershipTransferred",
+    "name": "PAISent",
     "type": "event"
   },
   {
@@ -146,13 +105,13 @@
       {
         "indexed": false,
         "internalType": "uint256",
-        "name": "_F_ETH",
+        "name": "_F_GEM",
         "type": "uint256"
       },
       {
         "indexed": false,
         "internalType": "uint256",
-        "name": "_F_LUSD",
+        "name": "_F_PAI",
         "type": "uint256"
       }
     ],
@@ -171,13 +130,13 @@
       {
         "indexed": false,
         "internalType": "uint256",
-        "name": "LUSDGain",
+        "name": "PAIGain",
         "type": "uint256"
       },
       {
         "indexed": false,
         "internalType": "uint256",
-        "name": "ETHGain",
+        "name": "GEMGain",
         "type": "uint256"
       }
     ],
@@ -190,25 +149,64 @@
       {
         "indexed": false,
         "internalType": "uint256",
-        "name": "_totalLQTYStaked",
+        "name": "_totalMYOStaked",
         "type": "uint256"
       }
     ],
-    "name": "TotalLQTYStakedUpdated",
+    "name": "TotalMYOStakedUpdated",
     "type": "event"
   },
   {
-    "anonymous": false,
-    "inputs": [
+    "inputs": [],
+    "name": "BOOTSTRAP_PERIOD",
+    "outputs": [
       {
-        "indexed": false,
-        "internalType": "address",
-        "name": "_troveManager",
-        "type": "address"
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
       }
     ],
-    "name": "TroveManagerAddressSet",
-    "type": "event"
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "BORROWING_FEE_FLOOR",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "CCR",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "DAI_GAS_COMPENSATION",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
   },
   {
     "inputs": [],
@@ -225,7 +223,7 @@
   },
   {
     "inputs": [],
-    "name": "F_ETH",
+    "name": "F_GEM",
     "outputs": [
       {
         "internalType": "uint256",
@@ -238,7 +236,59 @@
   },
   {
     "inputs": [],
-    "name": "F_LUSD",
+    "name": "F_PAI",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "HALF_PERCENT_DIVISOR",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "MAX_UINT",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "MCR",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "MIN_NET_DEBT",
     "outputs": [
       {
         "internalType": "uint256",
@@ -264,10 +314,23 @@
   },
   {
     "inputs": [],
-    "name": "activePoolAddress",
+    "name": "SECONDS_IN_ONE_MINUTE",
     "outputs": [
       {
-        "internalType": "address",
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "activePool",
+    "outputs": [
+      {
+        "internalType": "contract IActivePool",
         "name": "",
         "type": "address"
       }
@@ -277,10 +340,10 @@
   },
   {
     "inputs": [],
-    "name": "borrowerOperationsAddress",
+    "name": "borrowerOperations",
     "outputs": [
       {
-        "internalType": "address",
+        "internalType": "contract IBorrowerOperations",
         "name": "",
         "type": "address"
       }
@@ -289,18 +352,103 @@
     "type": "function"
   },
   {
-    "inputs": [
+    "inputs": [],
+    "name": "collSurplusPool",
+    "outputs": [
       {
-        "internalType": "address",
-        "name": "_user",
+        "internalType": "contract ICollSurplusPool",
+        "name": "",
         "type": "address"
       }
     ],
-    "name": "getPendingETHGain",
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "core",
+    "outputs": [
+      {
+        "internalType": "contract ICore",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "defaultPool",
+    "outputs": [
+      {
+        "internalType": "contract IDefaultPool",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "gemToken",
+    "outputs": [
+      {
+        "internalType": "contract IERC20",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getAccruedGEMFees",
     "outputs": [
       {
         "internalType": "uint256",
         "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getAccruedPAIFees",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getEntireSystemColl",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "entireSystemColl",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getEntireSystemDebt",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "entireSystemDebt",
         "type": "uint256"
       }
     ],
@@ -315,7 +463,26 @@
         "type": "address"
       }
     ],
-    "name": "getPendingLUSDGain",
+    "name": "getPendingGEMGain",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_user",
+        "type": "address"
+      }
+    ],
+    "name": "getPendingPAIGain",
     "outputs": [
       {
         "internalType": "uint256",
@@ -330,11 +497,11 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "_ETHFee",
+        "name": "_GEMFee",
         "type": "uint256"
       }
     ],
-    "name": "increaseF_ETH",
+    "name": "increaseF_GEM",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -343,34 +510,21 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "_LUSDFee",
+        "name": "_PAIFee",
         "type": "uint256"
       }
     ],
-    "name": "increaseF_LUSD",
+    "name": "increaseF_PAI",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
   },
   {
     "inputs": [],
-    "name": "isOwner",
+    "name": "myoStaking",
     "outputs": [
       {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "lqtyToken",
-    "outputs": [
-      {
-        "internalType": "contract ILQTYToken",
+        "internalType": "contract IMYOStaking",
         "name": "",
         "type": "address"
       }
@@ -380,10 +534,10 @@
   },
   {
     "inputs": [],
-    "name": "lusdToken",
+    "name": "myoToken",
     "outputs": [
       {
-        "internalType": "contract ILUSDToken",
+        "internalType": "contract IMYOToken",
         "name": "",
         "type": "address"
       }
@@ -393,10 +547,10 @@
   },
   {
     "inputs": [],
-    "name": "owner",
+    "name": "paiToken",
     "outputs": [
       {
-        "internalType": "address",
+        "internalType": "contract IPAIToken",
         "name": "",
         "type": "address"
       }
@@ -405,36 +559,16 @@
     "type": "function"
   },
   {
-    "inputs": [
+    "inputs": [],
+    "name": "priceFeed",
+    "outputs": [
       {
-        "internalType": "address",
-        "name": "_lqtyTokenAddress",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_lusdTokenAddress",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_troveManagerAddress",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_borrowerOperationsAddress",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_activePoolAddress",
+        "internalType": "contract IPriceFeed",
+        "name": "",
         "type": "address"
       }
     ],
-    "name": "setAddresses",
-    "outputs": [],
-    "stateMutability": "nonpayable",
+    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -449,13 +583,26 @@
     "outputs": [
       {
         "internalType": "uint256",
-        "name": "F_ETH_Snapshot",
+        "name": "F_GEM_Snapshot",
         "type": "uint256"
       },
       {
         "internalType": "uint256",
-        "name": "F_LUSD_Snapshot",
+        "name": "F_PAI_Snapshot",
         "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "sortedTroves",
+    "outputs": [
+      {
+        "internalType": "contract ISortedTroves",
+        "name": "",
+        "type": "address"
       }
     ],
     "stateMutability": "view",
@@ -465,7 +612,7 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "_LQTYamount",
+        "name": "_MYOamount",
         "type": "uint256"
       }
     ],
@@ -495,25 +642,12 @@
   },
   {
     "inputs": [],
-    "name": "totalLQTYStaked",
+    "name": "totalMYOStaked",
     "outputs": [
       {
         "internalType": "uint256",
         "name": "",
         "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "troveManagerAddress",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
       }
     ],
     "stateMutability": "view",
@@ -523,7 +657,7 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "_LQTYamount",
+        "name": "_MYOamount",
         "type": "uint256"
       }
     ],
@@ -533,7 +667,16 @@
     "type": "function"
   },
   {
-    "stateMutability": "payable",
-    "type": "receive"
+    "inputs": [],
+    "name": "vault",
+    "outputs": [
+      {
+        "internalType": "contract IVault",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
   }
 ]
