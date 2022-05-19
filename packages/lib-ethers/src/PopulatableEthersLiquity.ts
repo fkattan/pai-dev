@@ -901,10 +901,16 @@ export class PopulatableEthersLiquity
     );
   }
 
-  async approveTroveTransaction(amount) {
-    const address = "0x3A2EAfD8939c9CF44bc9a62FaBd12c1c1F672833";
+  async approveTroveTransaction(amount:any):Promise<any> {
+    const activePoolAddress = "0x3A2EAfD8939c9CF44bc9a62FaBd12c1c1F672833";
     const { mockDAI } = _getContracts(this._readable.connection);
-    const approval = await mockDAI.approve(address, amount._bigNumber);
+    try {
+      const approval = await mockDAI.approve(activePoolAddress, amount._bigNumber);
+      const receipt = await approval.wait();
+      return { success: true, data: receipt };
+    } catch (error) {
+      return { success: false, data: error };
+    }
   }
 
   /** {@inheritDoc @liquity/lib-base#PopulatableLiquity.depositCollateral} */

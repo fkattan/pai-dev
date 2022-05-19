@@ -29,51 +29,51 @@ const TroveChangeDescription: React.FC<TroveAdjustmentDescriptionParams> = ({ pa
   <ActionDescription>
     {params.depositCollateral && params.borrowLUSD ? (
       <>
-        You will deposit <Amount>{params.depositCollateral.prettify()} ETH</Amount> and receive{" "}
+        Depositarás <Amount>{params.depositCollateral.prettify()} DAI</Amount> y recibirás{" "}
         <Amount>
           {params.borrowLUSD.prettify()} {COIN}
         </Amount>
       </>
     ) : params.repayLUSD && params.withdrawCollateral ? (
       <>
-        You will pay{" "}
+        Pagarás{" "}
         <Amount>
           {params.repayLUSD.prettify()} {COIN}
         </Amount>{" "}
-        and receive <Amount>{params.withdrawCollateral.prettify()} ETH</Amount>
+        y recibirás <Amount>{params.withdrawCollateral.prettify()} DAI</Amount>
       </>
     ) : params.depositCollateral && params.repayLUSD ? (
       <>
-        You will deposit <Amount>{params.depositCollateral.prettify()} ETH</Amount> and pay{" "}
+        Depositarás <Amount>{params.depositCollateral.prettify()} DAI</Amount> y pagarás{" "}
         <Amount>
           {params.repayLUSD.prettify()} {COIN}
         </Amount>
       </>
     ) : params.borrowLUSD && params.withdrawCollateral ? (
       <>
-        You will receive <Amount>{params.withdrawCollateral.prettify()} ETH</Amount> and{" "}
+        Recibirás <Amount>{params.withdrawCollateral.prettify()} DAI</Amount> y{" "}
         <Amount>
           {params.borrowLUSD.prettify()} {COIN}
         </Amount>
       </>
     ) : params.depositCollateral ? (
       <>
-        You will deposit <Amount>{params.depositCollateral.prettify()} ETH</Amount>
+        Depositarás <Amount>{params.depositCollateral.prettify()} DAI</Amount>
       </>
     ) : params.withdrawCollateral ? (
       <>
-        You will receive <Amount>{params.withdrawCollateral.prettify()} ETH</Amount>
+        Recibirás <Amount>{params.withdrawCollateral.prettify()} DAI</Amount>
       </>
     ) : params.borrowLUSD ? (
       <>
-        You will receive{" "}
+        Recibirás{" "}
         <Amount>
           {params.borrowLUSD.prettify()} {COIN}
         </Amount>
       </>
     ) : (
       <>
-        You will pay{" "}
+        Pagarás{" "}
         <Amount>
           {params.repayLUSD.prettify()} {COIN}
         </Amount>
@@ -196,7 +196,7 @@ const validateTroveCreation = (
     if (resultingTrove.collateralRatioIsBelowMinimum(price)) {
       return (
         <ErrorDescription>
-          Collateral ratio must be at least <Amount>{mcrPercent}</Amount>.
+          El ratio del colateral debe ser al menos del <Amount>{mcrPercent}</Amount>.
         </ErrorDescription>
       );
     }
@@ -248,8 +248,8 @@ const validateTroveAdjustment = (
       if (resultingTrove.collateralRatioIsBelowCritical(price)) {
         return (
           <ErrorDescription>
-            Your collateral ratio must be at least <Amount>{ccrPercent}</Amount> to borrow during
-            recovery mode. Please improve your collateral ratio.
+            El ratio del colateral debe ser al menos del <Amount>{ccrPercent}</Amount> para solicitar
+            un préstamo en modo de recuperación. Por favor incrementa el ratio.
           </ErrorDescription>
         );
       }
@@ -266,7 +266,7 @@ const validateTroveAdjustment = (
     if (resultingTrove.collateralRatioIsBelowMinimum(price)) {
       return (
         <ErrorDescription>
-          Collateral ratio must be at least <Amount>{mcrPercent}</Amount>.
+          El ratio del colateral debe ser al menos del <Amount>{mcrPercent}</Amount>.
         </ErrorDescription>
       );
     }

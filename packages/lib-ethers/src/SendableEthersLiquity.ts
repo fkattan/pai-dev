@@ -45,14 +45,16 @@ export class SendableEthersLiquity
   async openTrove(
     params: TroveCreationParams<Decimalish>,
     maxBorrowingRateOrOptionalParams?: Decimalish | BorrowingOperationOptionalParams,
-    overrides?: EthersTransactionOverrides
+    overrides?: EthersTransactionOverrides,
   ): Promise<SentEthersLiquityTransaction<TroveCreationDetails>> {
     return this._populate
       .openTrove(params, maxBorrowingRateOrOptionalParams, overrides)
       .then(sendTransaction);
   }
-  async approveTroveTransaction(amount) {
-    return this._populate.approveTroveTransaction(amount).then(sendTransaction);
+  async approveTroveTransaction(
+    amount: any,
+  ): Promise<unknown> {
+    return this._populate.approveTroveTransaction(amount);
   }
   /** {@inheritDoc @liquity/lib-base#SendableLiquity.closeTrove} */
   closeTrove(

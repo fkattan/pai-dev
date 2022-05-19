@@ -147,7 +147,7 @@ type TransactionProps<C> = {
 
 export const useTransactionFunction = (
   id: string,
-  send: TransactionFunction
+  send: any
 ): [sendTransaction: () => Promise<void>, transactionState: TransactionState] => {
   const [transactionState, setTransactionState] = useTransactionState();
 

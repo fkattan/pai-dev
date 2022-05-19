@@ -3,32 +3,12 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "_communityIssuanceAddress",
+        "name": "_borrowerOperations",
         "type": "address"
       },
       {
         "internalType": "address",
-        "name": "_myoStakingAddress",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_lockupFactoryAddress",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_bountyAddress",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_lpRewardsAddress",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_multisigAddress",
+        "name": "_vault",
         "type": "address"
       }
     ],
@@ -66,37 +46,17 @@
       {
         "indexed": false,
         "internalType": "address",
-        "name": "_communityIssuanceAddress",
+        "name": "_user",
         "type": "address"
-      }
-    ],
-    "name": "CommunityIssuanceAddressSet",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
+      },
       {
         "indexed": false,
-        "internalType": "address",
-        "name": "_lockupContractFactoryAddress",
-        "type": "address"
+        "internalType": "uint256",
+        "name": "_amount",
+        "type": "uint256"
       }
     ],
-    "name": "LockupContractFactoryAddressSet",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "_myoStakingAddress",
-        "type": "address"
-      }
-    ],
-    "name": "MYOStakingAddressSet",
+    "name": "PAITokenBalanceUpdated",
     "type": "event"
   },
   {
@@ -132,19 +92,6 @@
         "internalType": "bytes32",
         "name": "",
         "type": "bytes32"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "ONE_YEAR_IN_SECONDS",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
       }
     ],
     "stateMutability": "view",
@@ -218,16 +165,21 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "communityIssuanceAddress",
-    "outputs": [
+    "inputs": [
       {
         "internalType": "address",
-        "name": "",
+        "name": "_account",
         "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_amount",
+        "type": "uint256"
       }
     ],
-    "stateMutability": "view",
+    "name": "burn",
+    "outputs": [],
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -268,32 +220,6 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "getDeploymentStartTime",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "getLpRewardsEntitlement",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
     "inputs": [
       {
         "internalType": "address",
@@ -318,42 +244,21 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "lockupContractFactory",
-    "outputs": [
-      {
-        "internalType": "contract ILockupContractFactory",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "multisigAddress",
-    "outputs": [
+    "inputs": [
       {
         "internalType": "address",
-        "name": "",
+        "name": "_account",
         "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "myoStakingAddress",
-    "outputs": [
+      },
       {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
+        "internalType": "uint256",
+        "name": "_amount",
+        "type": "uint256"
       }
     ],
-    "stateMutability": "view",
+    "name": "mint",
+    "outputs": [],
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -442,24 +347,6 @@
       }
     ],
     "stateMutability": "pure",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_sender",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_amount",
-        "type": "uint256"
-      }
-    ],
-    "name": "sendToMYOStaking",
-    "outputs": [],
-    "stateMutability": "nonpayable",
     "type": "function"
   },
   {

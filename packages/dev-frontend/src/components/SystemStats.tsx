@@ -93,8 +93,8 @@ export const SystemStats: React.FC<SystemStatsProps> = ({ variant = "info", show
       </Heading>
 
       <Statistic
-        name="Tarifa de préstamo"
-        tooltip="La tarifa de préstamo es una tarifa única que se cobra como un porcentaje del monto prestado (en PAI) y es parte de la deuda de Trove. La tarifa varía entre el 0,5% y el 5% según los volúmenes de canje de PAI."
+        name="Tasa de préstamo"
+        tooltip="La tasa de préstamo es una tasa única que se cobra como un porcentaje del monto prestado (en PAI) y es parte de la deuda de Trove. La tasa varía entre el 0,5% y el 5% según los volúmenes de canje de PAI."
       >
         {borrowingFeePct.toString(2)}
       </Statistic>

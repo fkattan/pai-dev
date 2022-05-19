@@ -244,8 +244,6 @@ export class ReadableEthersLiquity implements ReadableLiquity {
       this._getDefaultPool(overrides)
     ]);
 
-    console.log('Total:',activePool.add(defaultPool))
-
     return activePool.add(defaultPool);
   }
 
