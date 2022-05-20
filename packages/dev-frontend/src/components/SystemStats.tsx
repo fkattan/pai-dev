@@ -86,7 +86,7 @@ export const SystemStats: React.FC<SystemStatsProps> = ({ variant = "info", show
     <Card {...{ variant }}>
       {showBalances && <Balances />}
 
-      <Heading>Estadísticas de Liquity </Heading>
+      <Heading>Estadísticas</Heading>
 
       <Heading as="h2" sx={{ mt: 3, fontWeight: "body" }}>
         Protocolo
