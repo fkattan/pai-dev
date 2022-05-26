@@ -20,7 +20,7 @@ export const LiquidatedTrove: React.FC = () => {
 
   return (
     <Card>
-      <Heading>Trove</Heading>
+      <Heading>Tesoro</Heading>
       <Box sx={{ p: [2, 3] }}>
         <InfoMessage title="Your Trove has been liquidated.">
           {hasSurplusCollateral

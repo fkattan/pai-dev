@@ -227,7 +227,7 @@ export const TroveManager: React.FC<TroveManagerProps> = ({ collateral, debt }) 
 
       <Flex variant="layout.actions">
         <Button variant="cancel" onClick={handleCancel}>
-          Cancel
+          Cancelar
         </Button>
 
         {validChange ? (
@@ -237,7 +237,7 @@ export const TroveManager: React.FC<TroveManagerProps> = ({ collateral, debt }) 
             maxBorrowingRate={maxBorrowingRate}
             borrowingFeeDecayToleranceMinutes={60}
           >
-            Confirm
+            Confirmar
           </TroveAction>
         ) : (
           <Button disabled>Confirm</Button>

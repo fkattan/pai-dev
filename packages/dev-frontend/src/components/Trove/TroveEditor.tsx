@@ -50,17 +50,17 @@ export const TroveEditor: React.FC<TroveEditorProps> = ({
 
   return (
     <Card>
-      <Heading>Trove</Heading>
+      <Heading>Tesoro</Heading>
 
       <Box sx={{ p: [2, 3] }}>
         <StaticRow
-          label="Collateral"
+          label="Colateral"
           inputId="trove-collateral"
           amount={edited.collateral.prettify(4)}
-          unit="ETH"
+          unit="DAI"
         />
 
-        <StaticRow label="Debt" inputId="trove-debt" amount={edited.debt.prettify()} unit={COIN} />
+        <StaticRow label="Deuda" inputId="trove-debt" amount={edited.debt.prettify()} unit={COIN} />
 
         {original.isEmpty && (
           <StaticRow
@@ -83,7 +83,7 @@ export const TroveEditor: React.FC<TroveEditorProps> = ({
         )}
 
         <StaticRow
-          label="Borrowing Fee"
+          label="Tasa de Prestamo"
           inputId="trove-borrowing-fee"
           amount={fee.toString(2)}
           pendingAmount={feePct.toString(2)}

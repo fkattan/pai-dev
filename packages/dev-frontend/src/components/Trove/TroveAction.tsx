@@ -39,45 +39,28 @@ export const TroveAction: React.FC<TroveActionProps> = ({
         })
   );
 
-  const [sendAuth, authState] = useTransactionFunction(
-    "troveAuth",
-    change.type === "creation"
-      ? liquity.send.approveTroveTransaction.bind(liquity.send, change.params.borrowLUSD, {
-          maxBorrowingRate,
-          borrowingFeeDecayToleranceMinutes
-        })
-      : liquity.send.approveTroveTransaction.bind(liquity.send, change.params.borrowLUSD, {
-          maxBorrowingRate,
-          borrowingFeeDecayToleranceMinutes
-        })
-  );
-
-  React.useEffect(() => {
-    console.log("Auth State", authState);
-    const { type } = authState;
-    if (type === "waitingForApproval" || type === "waitingForConfirmation") {
-      setLoadingApproval(true);
-    } else if (type === "confirmed" || type === "confirmedOneShot") {
-      setApproved(true);
-      setLoadingApproval(false);
-    } else if (type === "failed" || type === "cancelled") {
-      setApproved(false);
-      setLoadingApproval(false);
-    }
-  }, [authState]);
-
   const approveTransaction = async () => {
     setLoadingApproval(true);
-    const response: any = await liquity.send.approveTroveTransaction(change.params.borrowLUSD);
-    console.log("Response:", response.data.confirmations);
+    console.log("Params:", change.params);
+    let response: any;
+    change.type === "creation"
+      ? (response = await liquity.send.approveTroveTransaction(change.params.borrowLUSD))
+      : change.type === "closure"
+      ? (response = approveClosure())
+      : (response = await liquity.send.approveTroveTransaction(
+          change.params?.depositCollateral ?? change.params?.withdrawCollateral
+        ));
     if (response.success) {
       setApproved(true);
       setLoadingApproval(false);
     } else {
       setApproved(false);
       setLoadingApproval(false);
-      console.log("Error", response.data);
     }
+  };
+
+  const approveClosure = () => {
+    return { success: true };
   };
 
   return loadingApproval ? (

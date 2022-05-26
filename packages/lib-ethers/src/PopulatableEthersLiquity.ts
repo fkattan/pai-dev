@@ -989,9 +989,10 @@ export class PopulatableEthersLiquity
       currentBorrowingRate
     );
 
-    const txParams = (borrowLUSD?: Decimal): Parameters<typeof borrowerOperations.adjustTrove> => [
-      maxBorrowingRate.hex,
-      (withdrawCollateral ?? Decimal.ZERO).hex,
+    const txParams = (borrowLUSD?: Decimal): any => [
+      (withdrawCollateral ?? depositCollateral ?? Decimal.ZERO
+      ).hex,
+      !!depositCollateral,
       (borrowLUSD ?? repayLUSD ?? Decimal.ZERO).hex,
       !!borrowLUSD,
       ...hints,
@@ -1015,11 +1016,15 @@ export class PopulatableEthersLiquity
         );
       }
 
-      const [gasNow, gasLater] = await Promise.all([
-        borrowerOperations.estimateGas.adjustTrove(...txParams(borrowLUSD)),
-        borrowLUSD &&
-          borrowerOperations.estimateGas.adjustTrove(...txParams(borrowLUSDSimulatingDecay))
-      ]);
+      // const [gasNow, gasLater] = await Promise.all([
+      //   borrowerOperations.estimateGas.adjustTrove(...txParams(borrowLUSD)),
+      //   borrowLUSD &&
+      //     borrowerOperations.estimateGas.adjustTrove(...txParams(borrowLUSDSimulatingDecay))
+      // ]);
+      const [gasNow, gasLater] = [
+        BigNumber.from(500000),
+        BigNumber.from(500000)
+      ];
 
       let gasLimit = bigNumberMax(addGasForPotentialListTraversal(gasNow), gasLater);
 

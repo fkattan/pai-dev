@@ -69,6 +69,7 @@ const applyUnsavedCollateralChanges = (unsavedChanges: Difference, trove: Trove)
 const applyUnsavedNetDebtChanges = (unsavedChanges: Difference, trove: Trove) => {
   if (unsavedChanges.absoluteValue) {
     if (unsavedChanges.positive) {
+      console.log("Adding debt");
       return trove.netDebt.add(unsavedChanges.absoluteValue);
     }
     if (unsavedChanges.negative) {
@@ -105,6 +106,7 @@ export const Adjusting: React.FC = () => {
       setCollateral(nextCollateral);
     }
     if (!previousTrove.current.netDebt.eq(trove.netDebt)) {
+      console.log("Debt changed...");
       const unsavedChanges = Difference.between(netDebt, previousTrove.current.netDebt);
       const nextNetDebt = applyUnsavedNetDebtChanges(unsavedChanges, trove);
       setNetDebt(nextNetDebt);
@@ -172,19 +174,19 @@ export const Adjusting: React.FC = () => {
 
       <Box sx={{ p: [2, 3] }}>
         <EditableRow
-          label="Collateral"
+          label="Colateral"
           inputId="trove-collateral"
           amount={collateral.prettify(4)}
           maxAmount={maxCollateral.toString()}
           maxedOut={collateralMaxedOut}
           editingState={editingState}
-          unit="ETH"
+          unit="DAI"
           editedAmount={collateral.toString(4)}
           setEditedAmount={(amount: string) => setCollateral(Decimal.from(amount))}
         />
 
         <EditableRow
-          label="Net debt"
+          label="Deuda neta"
           inputId="trove-net-debt-amount"
           amount={netDebt.prettify()}
           unit={COIN}
@@ -194,7 +196,7 @@ export const Adjusting: React.FC = () => {
         />
 
         <StaticRow
-          label="Liquidation Reserve"
+          label="Reserva de Liquidación"
           inputId="trove-liquidation-reserve"
           amount={`${LUSD_LIQUIDATION_RESERVE}`}
           unit={COIN}
@@ -212,7 +214,7 @@ export const Adjusting: React.FC = () => {
         />
 
         <StaticRow
-          label="Borrowing Fee"
+          label="Tasa de Préstamo"
           inputId="trove-borrowing-fee"
           amount={fee.prettify(2)}
           pendingAmount={feePct.toString(2)}
@@ -230,7 +232,7 @@ export const Adjusting: React.FC = () => {
         />
 
         <StaticRow
-          label="Total debt"
+          label="Deuda total"
           inputId="trove-total-debt"
           amount={totalDebt.prettify(2)}
           unit={COIN}
@@ -280,7 +282,7 @@ export const Adjusting: React.FC = () => {
               maxBorrowingRate={maxBorrowingRate}
               borrowingFeeDecayToleranceMinutes={60}
             >
-              Confirm
+              Confirmar
             </TroveAction>
           ) : (
             <Button disabled>Confirm</Button>
