@@ -1,20 +1,15 @@
 [
   {
-    "inputs": [],
-    "stateMutability": "nonpayable",
-    "type": "constructor"
-  },
-  {
     "anonymous": false,
     "inputs": [
       {
         "indexed": false,
-        "internalType": "address",
-        "name": "_lqtyTokenAddress",
-        "type": "address"
+        "internalType": "uint256",
+        "name": "_lastGoodPrice",
+        "type": "uint256"
       }
     ],
-    "name": "MYOTokenAddressSet",
+    "name": "LastGoodPriceUpdated",
     "type": "event"
   },
   {
@@ -41,17 +36,17 @@
     "inputs": [
       {
         "indexed": false,
-        "internalType": "uint256",
-        "name": "_totalLQTYIssued",
-        "type": "uint256"
+        "internalType": "enum PriceFeed.Status",
+        "name": "newStatus",
+        "type": "uint8"
       }
     ],
-    "name": "TotalMYOIssuedUpdated",
+    "name": "PriceFeedStatusChanged",
     "type": "event"
   },
   {
     "inputs": [],
-    "name": "ISSUANCE_FACTOR",
+    "name": "DECIMAL_PRECISION",
     "outputs": [
       {
         "internalType": "uint256",
@@ -64,7 +59,33 @@
   },
   {
     "inputs": [],
-    "name": "MYOSupplyCap",
+    "name": "ETHUSD_TELLOR_REQ_ID",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "MAX_PRICE_DEVIATION_FROM_PREVIOUS_ROUND",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "MAX_PRICE_DIFFERENCE_BETWEEN_ORACLES",
     "outputs": [
       {
         "internalType": "uint256",
@@ -90,7 +111,7 @@
   },
   {
     "inputs": [],
-    "name": "SECONDS_IN_ONE_MINUTE",
+    "name": "TARGET_DIGITS",
     "outputs": [
       {
         "internalType": "uint256",
@@ -103,7 +124,7 @@
   },
   {
     "inputs": [],
-    "name": "deploymentTime",
+    "name": "TELLOR_DIGITS",
     "outputs": [
       {
         "internalType": "uint256",
@@ -116,12 +137,12 @@
   },
   {
     "inputs": [],
-    "name": "governor",
+    "name": "TIMEOUT",
     "outputs": [
       {
-        "internalType": "address",
+        "internalType": "uint256",
         "name": "",
-        "type": "address"
+        "type": "uint256"
       }
     ],
     "stateMutability": "view",
@@ -129,7 +150,7 @@
   },
   {
     "inputs": [],
-    "name": "issueMYO",
+    "name": "fetchPrice",
     "outputs": [
       {
         "internalType": "uint256",
@@ -142,12 +163,25 @@
   },
   {
     "inputs": [],
-    "name": "myoToken",
+    "name": "isOwner",
     "outputs": [
       {
-        "internalType": "contract IMYOToken",
+        "internalType": "bool",
         "name": "",
-        "type": "address"
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "lastGoodPrice",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
       }
     ],
     "stateMutability": "view",
@@ -168,55 +202,12 @@
   },
   {
     "inputs": [],
-    "name": "renounceOwnership",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_account",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_amount",
-        "type": "uint256"
-      }
-    ],
-    "name": "sendMYO",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_myoTokenAddress",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_governor",
-        "type": "address"
-      }
-    ],
-    "name": "setAddresses",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "totalMYOIssued",
+    "name": "priceAggregator",
     "outputs": [
       {
-        "internalType": "uint256",
+        "internalType": "contract AggregatorV3Interface",
         "name": "",
-        "type": "uint256"
+        "type": "address"
       }
     ],
     "stateMutability": "view",
@@ -226,13 +217,70 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "newOwner",
+        "name": "_priceAggregatorAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_tellorCallerAddress",
         "type": "address"
       }
     ],
-    "name": "transferOwnership",
+    "name": "setAddresses",
     "outputs": [],
     "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_lastGoodPrice",
+        "type": "uint256"
+      }
+    ],
+    "name": "setLastGoodPrice",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "enum PriceFeed.Status",
+        "name": "_status",
+        "type": "uint8"
+      }
+    ],
+    "name": "setStatus",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "status",
+    "outputs": [
+      {
+        "internalType": "enum PriceFeed.Status",
+        "name": "",
+        "type": "uint8"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "tellorCaller",
+    "outputs": [
+      {
+        "internalType": "contract ITellorCaller",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
     "type": "function"
   }
 ]

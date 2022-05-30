@@ -143,9 +143,9 @@ export const StakingManager: React.FC = () => {
     <StakingEditor title={"Staking"} {...{ originalStake, editedLQTY, dispatch }}>
       {description ??
         (makingNewStake ? (
-          <ActionDescription>Entering the amount of {GT} you'd like to stake.</ActionDescription>
+          <ActionDescription>Ingresa la cantidad {GT} que quisieras stakear.</ActionDescription>
         ) : (
-          <ActionDescription>Adjust the {GT} amount to stake or withdraw.</ActionDescription>
+          <ActionDescription>Ajusta la cantidad de {GT} a stakear o retirar.</ActionDescription>
         ))}
 
       <Flex variant="layout.actions">

@@ -3,26 +3,27 @@ import path from "path";
 
 import { Interface, ParamType } from "@ethersproject/abi";
 
-import ActivePool from "../../contracts/artifacts/contracts/ActivePool.sol/ActivePool.json";
-import BorrowerOperations from "../../contracts/artifacts/contracts/BorrowerOperations.sol/BorrowerOperations.json";
-import CollSurplusPool from "../../contracts/artifacts/contracts/CollSurplusPool.sol/CollSurplusPool.json";
-import CommunityIssuance from "../../contracts/artifacts/contracts/LQTY/CommunityIssuance.sol/CommunityIssuance.json";
-import DefaultPool from "../../contracts/artifacts/contracts/DefaultPool.sol/DefaultPool.json";
-import ERC20Mock from "../../contracts/artifacts/contracts/LPRewards/TestContracts/ERC20Mock.sol/ERC20Mock.json";
-import GasPool from "../../contracts/artifacts/contracts/GasPool.sol/GasPool.json";
-import HintHelpers from "../../contracts/artifacts/contracts/HintHelpers.sol/HintHelpers.json";
-import IERC20 from "../../contracts/artifacts/@openzeppelin/contracts/token/ERC20/IERC20.sol/IERC20.json";
-import LockupContractFactory from "../../contracts/artifacts/contracts/LQTY/LockupContractFactory.sol/LockupContractFactory.json";
-import LUSDToken from "../../contracts/artifacts/contracts/LUSDToken.sol/LUSDToken.json";
-import LQTYStaking from "../../contracts/artifacts/contracts/LQTY/LQTYStaking.sol/LQTYStaking.json";
-import LQTYToken from "../../contracts/artifacts/contracts/LQTY/LQTYToken.sol/LQTYToken.json";
-import MultiTroveGetter from "../../contracts/artifacts/contracts/MultiTroveGetter.sol/MultiTroveGetter.json";
-import PriceFeed from "../../contracts/artifacts/contracts/PriceFeed.sol/PriceFeed.json";
-import PriceFeedTestnet from "../../contracts/artifacts/contracts/TestContracts/PriceFeedTestnet.sol/PriceFeedTestnet.json";
-import SortedTroves from "../../contracts/artifacts/contracts/SortedTroves.sol/SortedTroves.json";
-import StabilityPool from "../../contracts/artifacts/contracts/StabilityPool.sol/StabilityPool.json";
-import TroveManager from "../../contracts/artifacts/contracts/TroveManager.sol/TroveManager.json";
-import Unipool from "../../contracts/artifacts/contracts/LPRewards/Unipool.sol/Unipool.json";
+import ActivePool from "../src/abi_pai/ActivePool.json";
+import BorrowerOperations from "../src/abi_pai/BorrowerOperations.json";
+import CollSurplusPool from "../src/abi_pai/CollSurplusPool.json";
+import CommunityIssuance from "../src/abi_pai/CommunityIssuance.json";
+import DefaultPool from "../src/abi_pai/DefaultPool.json";
+import ERC20Mock from "../src/abi_pai/ERC20Mock.json";
+import GasPool from "../src/abi_pai/GasPool.json";
+import HintHelpers from "../src/abi_pai/HintHelpers.json";
+import IERC20 from "../src/abi_pai/IERC20.json";
+import LockupContractFactory from "../src/abi_pai/LockupContractFactory.json";
+import LUSDToken from "../src/abi_pai/LUSDToken.json";
+import LQTYStaking from "../src/abi_pai/LQTYStaking.json";
+import LQTYToken from "../src/abi_pai/LQTYToken.json";
+import MockDAI from "../src/abi_pai/MockDAI.json";
+import MultiTroveGetter from "../src/abi_pai/MultiTroveGetter.json";
+import PriceFeed from "../src/abi_pai/PriceFeed.json";
+import PriceFeedTestnet from "../src/abi_pai/PriceFeedTestnet.json";
+import SortedTroves from "../src/abi_pai/SortedTroves.json";
+import StabilityPool from "../src/abi_pai/StabilityPool.json";
+import TroveManager from "../src/abi_pai/TroveManager.json";
+import Unipool from "../src/abi_pai/Unipool.json";
 
 const getTupleType = (components: ParamType[], flexible: boolean) => {
   if (components.every(component => component.name)) {
@@ -156,6 +157,7 @@ const contractArtifacts = [
   LUSDToken,
   LQTYStaking,
   LQTYToken,
+  MockDAI,
   MultiTroveGetter,
   PriceFeed,
   PriceFeedTestnet,
